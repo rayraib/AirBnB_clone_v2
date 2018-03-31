@@ -13,12 +13,12 @@ def do_pack():
         generate a .tgz archive
     '''
     filename = (datetime.now().strftime('%Y%m%d%H%M%S'))
+    filename = filename + ".tgz"
     local('mkdir -p versions')
-    result = local('tar -cvzf web_static_{}.tgz web_static'.format(filename))
-    print("resutl value-->{}".format(result))
+    result = local('tar -cvzf web_static_{} web_static'.format(filename))
     if result.succeeded:
         local('sudo mv web_static_* versions/')
-        path = os.path.abspath("versions/")
-        print("final result path----> {}".format(path))
+        path = os.path.abspath(filename)
+        return (path)
     else:
         return None
