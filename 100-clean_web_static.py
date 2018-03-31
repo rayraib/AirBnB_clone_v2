@@ -16,10 +16,10 @@ def do_clean(number=0):
     if number == 0:
         number = number + 2
     number = number + 1
-    result = run(ls -t /versions | tail -n +number| xargs rm)
+    result = local('ls -t /versions | tail -n +number| xargs rm')
     if result.failed:
         return False
-    result = run(ls -t /data/web_static/releases | tail -n +number| xargs rm)
+    result = run('ls -t /data/web_static/releases | tail -n +number| xargs rm')
     if result.failed:
         return False
 
