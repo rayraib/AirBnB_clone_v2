@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # script that sets up your web servers for the deployment of web_static
-code="\n    location /hbnb_static/ {\n\t\talias /data/web_static/current;\n\t
-    }\n"
+code="\n    location /hbnb_static/ {\n\t\talias /data/web_static/current;\n\t}\n"
 sudo apt-get update -y
 sudo apt-get install nginx -y
 sudo mkdir -p /data/web_static/releases/test/
