@@ -85,7 +85,6 @@ def deploy():
     '''
         deploy new server
     '''
-    env.user = "ubuntu"
 
     file_path = do_pack()
     if file_path is None:
