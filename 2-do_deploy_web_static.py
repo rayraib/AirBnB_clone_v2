@@ -15,7 +15,7 @@ def do_deploy(archive_path):
     env.user = 'ubuntu'
 
     # check if the archive_path is valid
-    if not os.path.isfile(archive_path):
+    if not os.path.exists(archive_path):
         return False
 
     # split the path to obtain filename with and without .tgz extension
