@@ -8,6 +8,6 @@ sudo mkdir -p /data/web_static/shared/
 sudo touch /data/web_static/releases/test/index.html
 echo "test index" > /data/web_static/releases/test/index.html
 sudo touch /data/web_static/current
-sudo ln -sf /data/web_static/current /data/web_static/releases/test/
+sudo ln -sf /data/web_static/releases/test/ /data/web_static/current 
 sudo chown -R ubuntu:ubuntu /data/
 sudo sed -i "28i $code" /etc/nginx/sites-available/default
