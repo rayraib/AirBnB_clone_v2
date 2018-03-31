@@ -16,12 +16,11 @@ def do_pack():
         generate a .tgz archive
     '''
     filename = (datetime.now().strftime('%Y%m%d%H%M%S'))
-    filename = filename + ".tgz"
+    filename = "web_static_" + filename + ".tgz"
     local('mkdir -p versions')
-    result = local('tar -cvzf web_static_{} web_static'.format(filename))
+    result = local('tar -cvzf versions/{} web_static/'.format(filename))
     if result.succeeded:
-        local('sudo mv web_static_* versions/')
-        path = os.path.abspath(filename)
+        path = "versions/{}".format(filename)
         return (path)
     else:
         return None
@@ -31,10 +30,10 @@ def do_deploy(archive_path):
     '''
         deploys .tgz file to servers
     '''
-    env.user = 'ubuntu'
 
     # check if the archive_path is valid
     if not os.path.exists(archive_path):
+        print("FAILING HERE")
         return False
 
     # split the path to obtain filename with and without .tgz extension
@@ -87,7 +86,8 @@ def deploy():
     '''
 
     file_path = do_pack()
+    print ("\n======THIS IS THE FILE PATH=======>{}\n".format(file_path))
     if file_path is None:
         return False
-    x = do_deploy(file_path)
-    return(x)
+    result = do_deploy(file_path)
+    return result 
