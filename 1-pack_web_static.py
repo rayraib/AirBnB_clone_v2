@@ -15,9 +15,10 @@ def do_pack():
     filename = (datetime.now().strftime('%Y%m%d%H%M%S'))
     local('mkdir -p versions')
     result = local('tar -cvzf web_static_{}.tgz web_static'.format(filename))
+    print("resutl value-->{}".format(result))
     if result.succeeded:
         local('sudo mv web_static_* versions/')
-        path = os.path.abspath("versions//")
+        path = os.path.abspath("versions/")
         print("final result path----> {}".format(path))
     else:
         return None
