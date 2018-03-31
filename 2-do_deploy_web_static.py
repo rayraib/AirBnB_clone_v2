@@ -28,11 +28,15 @@ def do_deploy(archive_path):
     put(archive_path, '/tmp/{}'.format(full_name))
 
     # extract content from the tar file
-    run('tar -xzf /tmp/{} -C /data/web_static/releases/'.
-        format(full_name))
+    run('mkdir -p /data/web_static/releases/{}/'.format(filename))
+    run('tar -xzf /tmp/{} -C /data/web_static/releases/{}'.
+        format(full_name, filename))
 
     # remove the tar file from server
     run('rm /tmp/{}'.format(full_name))
+    run('mv /data/web_static/releases/{}/web_static/*\
+            /data/web_static/releases/{}/'.format(filename, filename))
+    run('rm -rf /data/web_static/releases/{}/web_static'.format(filename))
     run('rm /data/web_static/current')
     run('ln -s /data/web_static/releases/{} /data/web_static/current\
         '.format(filename))
