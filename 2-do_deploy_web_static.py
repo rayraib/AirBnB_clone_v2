@@ -25,21 +25,38 @@ def do_deploy(archive_path):
     filename = full_filename[0]
 
     # upload archive file to the server
-    put(archive_path, '/tmp/{}'.format(full_name))
+    result = put(archive_path, '/tmp/{}'.format(full_name))
+    if result.failed:
+        return False
 
     # extract content from the tar file
-    run('mkdir -p /data/web_static/releases/{}/'.format(filename))
+    result = run('mkdir -p /data/web_static/releases/{}/'.format(filename))
+    if result.failed:
+        return False
     run('tar -xzf /tmp/{} -C /data/web_static/releases/{}/'.
         format(full_name, filename))
+    if result.failed:
+        return False
 
     # remove the tar file from server
-    run('rm /tmp/{}'.format(full_name))
-    run('mv /data/web_static/releases/{}/web_static/*\
+    result = run('rm /tmp/{}'.format(full_name))
+    if result.failed:
+        return False
+    result = run('mv /data/web_static/releases/{}/web_static/*\
             /data/web_static/releases/{}/'.format(filename, filename))
-    run('rm -rf /data/web_static/releases/{}/web_static'.format(filename))
-    run('rm /data/web_static/current')
-    run('ln -s /data/web_static/releases/{}/ /data/web_static/current\
+    if result.failed:
+        return False
+    result = run('rm -rf /data/web_static/releases/{}/web_static'
+                 .format(filename))
+    if result.failed:
+        return False
+    result = run('rm /data/web_static/current')
+    if result.failed:
+        return False
+    result = run('ln -s /data/web_static/releases/{}/ /data/web_static/current\
         '.format(filename))
+    if result.failed:
+        return False
 
     print("New version deployed!")
     return True
