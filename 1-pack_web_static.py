@@ -5,6 +5,7 @@
 '''
 from fabric.api import local
 from datetime import datetime
+import os
 
 
 def do_pack():
@@ -16,6 +17,7 @@ def do_pack():
     result = local('tar -cvzf web_static_{}.tgz web_static'.format(filename))
     if result.succeeded:
         local('sudo mv web_static_* versions/')
-        return(filename)
+        path = os.path.abspath("versions//")
+        print("final result path----> {}".format(path))
     else:
         return None
