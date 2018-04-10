@@ -8,8 +8,8 @@ from flask import render_template
 import os
 
 
-
 app = Flask(__name__)
+
 states = (storage.all('State')).values()
 cities = []
 for state in states:
