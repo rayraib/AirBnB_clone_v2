@@ -23,7 +23,7 @@ def states_list():
 @app.route('/states/<id>', strict_slashes=False)
 def city_by_states(id):
     '''
-        list cities belonging to state with id 
+        list cities belonging to state with id
     '''
     cities = []
     flag = 0
