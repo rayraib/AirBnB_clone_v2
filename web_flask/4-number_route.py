@@ -31,7 +31,6 @@ def python_text(text='is cool'):
 @app.route('/number/<int:n>')
 def is_number(n):
     return ("%d is a number") % n
-    
 
 
 if __name__ == '__main__':
