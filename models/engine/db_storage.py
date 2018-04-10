@@ -67,22 +67,33 @@ class DBStorage:
         '''
             add object to current session.
         '''
-        self.__session.add(obj)
-        self.__session.commit()
+        try:
+            self.__session.add(obj)
+            self.__session.commit()
+        except Exception:
+            self.__session.rollback()
 
     def save(self):
         '''
             commit all changes to current session.
         '''
-        self.__session.commit()
+        try:
+            self.__session.commit()
+        except Exception:
+            self.__session.rollback()
+
 
     def delete(self, obj=None):
         '''
             delete from current sesssion
         '''
         if obj:
-            self.__session.delete(obj)
-            self.__session.commit()
+            try:
+                self.__session.delete(obj)
+                self.__session.commit()
+            except Exception:
+                self.__session.rollback()
+
 
     def reload(self):
         '''
@@ -93,3 +104,9 @@ class DBStorage:
                                        expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
+
+    def close(self):
+        '''
+            call remove method of the private __session attribute
+        '''
+        self.__session.close()
