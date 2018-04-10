@@ -10,7 +10,7 @@ from flask import render_template
 app = Flask(__name__)
 states = storage.all('State')
 states = states.values()
-print (states)
+
 
 @app.route('/states_list', strict_slashes=False)
 def list_states():
