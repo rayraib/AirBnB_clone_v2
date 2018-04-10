@@ -82,7 +82,6 @@ class DBStorage:
         except Exception:
             self.__session.rollback()
 
-
     def delete(self, obj=None):
         '''
             delete from current sesssion
@@ -93,7 +92,6 @@ class DBStorage:
                 self.__session.commit()
             except Exception:
                 self.__session.rollback()
-
 
     def reload(self):
         '''

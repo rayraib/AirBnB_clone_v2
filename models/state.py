@@ -7,6 +7,8 @@ from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 import os
+import models
+from models.city import City
 
 
 class State(BaseModel, Base):
