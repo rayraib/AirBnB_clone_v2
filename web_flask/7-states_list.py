@@ -3,7 +3,7 @@
 '''
 from flask import Flask
 from models import storage
-from flask import render_template 
+from flask import render_template
 
 
 app = Flask(__name__)
@@ -15,7 +15,8 @@ states = all_states.values()
 
 @app.route('/states_list', strict_slashes=False)
 def list_states():
-   return render_template('7-states_list.html',states=states)
+    return render_template('7-states_list.html', states=states)
+
 
 '''
 @app.teardown_appcontext
