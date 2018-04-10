@@ -138,7 +138,7 @@ class HBNBCommand(cmd.Cmd):
             based or not on the class name.
         '''
         obj_list = []
-        if os.environ['HBNB_TYPE_STORAGE'] == 'file':
+        if os.environ.get('HBNB_TYPE_STORAGE') == 'file':
             storage = models.storage
             objects = storage.all(args)
             try:
