@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 '''
-    Render list of all states
+    Render all cities by states
 '''
 from flask import Flask
-from models import storage, DBStorage, State 
+from models import storage, DBStorage, State
 from flask import render_template
 
 
@@ -16,12 +16,14 @@ for state in states:
     else:
         cities.append(state.cities())
 
+
 @app.route('/cities_by_states', strict_slashes=False)
 def list_city_by_states():
     '''
         list states
     '''
-    return render_template('8-cities_by_states.html', cities=cities, states=states)
+    return render_template('8-cities_by_states.html',
+                           cities=cities, states=states)
 
 
 @app.teardown_appcontext
