@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-    Render all cities by states
+    Render state and its cities based on state id
 '''
 from flask import Flask
 from models import storage, DBStorage
@@ -13,7 +13,7 @@ app = Flask(__name__)
 @app.route('/states', strict_slashes=False)
 def states_list():
     '''
-        list states
+        list all states
     '''
     states = (storage.all('State')).values()
     return render_template('9-states.html', states=states)
@@ -22,7 +22,7 @@ def states_list():
 @app.route('/states/<id>', strict_slashes=False)
 def city_by_states(id):
     '''
-        list states
+        list cities belonging to state with id 
     '''
     cities = []
     states = (storage.all('State')).values()

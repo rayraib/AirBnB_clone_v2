@@ -20,7 +20,7 @@ for state in states:
 @app.route('/cities_by_states', strict_slashes=False)
 def list_city_by_states():
     '''
-        list states
+        list cities by states
     '''
     return render_template('8-cities_by_states.html',
                            cities=cities, states=states)
