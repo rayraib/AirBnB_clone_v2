@@ -20,7 +20,7 @@ def hbnb():
 
 @app.route('/c/<text>')
 def c_text(text):
-    return ('C %s') %text.replace('_', ' ')
+    return ('C %s') % text.replace('_', ' ')
 
 
 @app.route('/python', strict_slashes=False)
