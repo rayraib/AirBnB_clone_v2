@@ -19,7 +19,6 @@ def states_list():
     return render_template('9-states.html', states=states)
 
 
-
 @app.route('/states/<id>', strict_slashes=False)
 def city_by_states(id):
     '''
@@ -35,7 +34,7 @@ def city_by_states(id):
                 break
             else:
                 cities = (state.cities())
-                break;
+                break
     return render_template('9-states.html',
                            cities=cities, state_name=state_name)
 
