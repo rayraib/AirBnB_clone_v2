@@ -20,14 +20,14 @@ def hbnb():
 
 @app.route('/c/<text>')
 def c_text(text):
-    return ('C %s') % text.replace('_', ' ')
+    return ('C %s') %text.replace('_', ' ')
 
 
+@app.route('/python', strict_slashes=False)
 @app.route('/python/<text>')
 def python_text(text='is cool'):
-    return ('python %s') % text.replace('_', ' ')
+        return ('python %s') % text.replace('_', ' ')
 
 
-if __name__ == '__main__':
-    app.strict_slashes = False
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000, debug=True)
