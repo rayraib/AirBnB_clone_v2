@@ -5,6 +5,7 @@
 from flask import Flask
 from models import storage, State
 from flask import render_template
+import os
 
 
 
@@ -12,7 +13,7 @@ app = Flask(__name__)
 states = (storage.all('State')).values()
 cities = []
 for state in states:
-    if (os.environ.get('HBNB_TYPE_STORAGE') == 'db':
+    if (os.environ.get('HBNB_TYPE_STORAGE')) == 'db':
         cities.append(state.cities)
     else:
         cities.append(state.cities())
