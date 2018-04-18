@@ -14,11 +14,17 @@ states = states.values()
 
 @app.route('/states_list', strict_slashes=False)
 def list_states():
+    '''
+        list states
+    '''
     return render_template('7-states_list.html', states=states)
 
 
 @app.teardown_appcontext
 def tear_down(exception):
+    '''
+        teardown
+    '''
     storage.close()
 
 
