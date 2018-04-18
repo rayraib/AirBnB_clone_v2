@@ -3,8 +3,9 @@
     Render state and its cities based on state id
 '''
 from flask import Flask
-from models import storage, DBStorage
+from models import storage
 from flask import render_template
+import os
 
 
 app = Flask(__name__)
@@ -29,7 +30,7 @@ def city_by_states(id):
     for state in states:
         if state.id == id:
             state_name = state.name
-            if isinstance(storage, DBStorage):
+            if (os.environ.get('HBNB_TYPE_STORAGE')) == 'db':
                 cities = (state.cities)
                 break
             else:
