@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 '''
+    Render list of all states
 '''
 from flask import Flask
 from models import storage
