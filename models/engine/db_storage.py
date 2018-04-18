@@ -40,6 +40,7 @@ class DBStorage:
             query current database session for all objects depending on cls.
         '''
         match = {}
+        result = {}
         if not cls:
             result = self.__session.query(State, City,
                                           Place, User, Review).all()
