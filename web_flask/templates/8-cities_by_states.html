@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>States</H1>
+        <UL>
+            {% for key in states|sort(attribute='name')%}
+                <LI>{{ key.id }}: <B>{{ key.name }}</B>
+                <UL>
+                    {% for cityy in cities %}
+                    {%- for city in cityy|sort(attribute='name') %}
+                    {%- if city.state_id == key.id %}
+                        <LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
+                    {%- endif %}
+                    {%- endfor %}
+                    {%- endfor %}
+                </UL>
+            </LI>
+            {% endfor %}
+        </UL>
+    </BODY>
+</HTML>
