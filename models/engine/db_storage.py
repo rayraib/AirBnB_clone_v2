@@ -68,31 +68,20 @@ class DBStorage:
         '''
             add object to current session.
         '''
-        try:
-            self.__session.add(obj)
-            self.__session.commit()
-        except Exception:
-            self.__session.rollback()
+        self.__session.add(obj)
 
     def save(self):
         '''
             commit all changes to current session.
         '''
-        try:
-            self.__session.commit()
-        except Exception:
-            self.__session.rollback()
+        self.__session.commit()
 
     def delete(self, obj=None):
         '''
             delete from current sesssion
         '''
         if obj:
-            try:
-                self.__session.delete(obj)
-                self.__session.commit()
-            except Exception:
-                self.__session.rollback()
+            self.__session.delete(obj)
 
     def reload(self):
         '''
