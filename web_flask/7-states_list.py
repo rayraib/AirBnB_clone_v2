@@ -8,12 +8,17 @@ from flask import render_template
 
 app = Flask(__name__)
 
+storage.reload()
+data = storage.all()
+print(data)
 
-@app.route('states_list', strict_slashes=False)
+@app.route('/states_list', strict_slashes=False)
 def list_states():
-    storage.reload()
-    data = storage.all()
-    return render_template('7-states_list.html', value=data)
+   return render_template('7-states_list.html', data=data)
+
+@app.teardown_appcontext
+def tear_down(storage):
+    storage.close()
 
 
 if __name__ == "__main__":
