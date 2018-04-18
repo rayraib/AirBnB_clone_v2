@@ -3,15 +3,16 @@
     Render all cities by states
 '''
 from flask import Flask
-from models import storage, DBStorage, State
+from models import storage, State
 from flask import render_template
+
 
 
 app = Flask(__name__)
 states = (storage.all('State')).values()
 cities = []
 for state in states:
-    if isinstance(storage, DBStorage):
+    if (os.environ.get('HBNB_TYPE_STORAGE') == 'db':
         cities.append(state.cities)
     else:
         cities.append(state.cities())
