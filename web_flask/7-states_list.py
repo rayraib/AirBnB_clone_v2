@@ -3,14 +3,13 @@
     Render list of all states
 '''
 from flask import Flask
-from models import storage
+from models import storage, State
 from flask import render_template
 
 
 app = Flask(__name__)
 
-storage.reload()
-all_states = storage.all('State')
+all_states = storage.all(State)
 states = all_states.values()
 
 
