@@ -17,7 +17,7 @@ def states_list():
         list all states
     '''
     states = (storage.all('State')).values()
-    return render_template('9-states.html', states=states)
+    return render_template('9-states.html', states=states, state_name='yes')
 
 
 @app.route('/states/<id>', strict_slashes=False)
